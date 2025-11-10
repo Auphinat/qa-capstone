@@ -9,6 +9,37 @@ class ModPage extends Page {
     get modTag () {
         return $('a.class-tag');
     }
+
+    get projectID () {
+        return $('span.project-id');
+    }
+
+    get gallery () {
+        return $('#gallery>a');
+    }
+
+    get relations () {
+        return $('#relations>a');
+    }
+
+    get pageNumbers () {
+        return $$('.top>.page-numbers>li');
+    }
+
+    async selectGallery () {
+        await this.scrollTo(this.gallery);
+        await this.gallery.click();
+    }
+
+    async selectRelations () {
+        await this.scrollTo(this.relations);
+        await this.relations.click();
+    }
+
+    async selectRelationsPage (index) {
+        await this.scrollTo(this.pageNumbers[index]);
+        await this.pageNumbers[index].$('button').click();
+    }
 }
 
 export default new ModPage();

@@ -21,6 +21,10 @@ class SearchPage extends Page {
     get tagList () {
         return $$('.classes-list>li>a');
     }
+    
+    get resultsList () {
+        return $$('.results-container>div');
+    }
 
     async search (input) {
         await this.scrollTo(this.searchInput);
@@ -42,6 +46,11 @@ class SearchPage extends Page {
             await this.scrollTo(this.tagList[i]);
             await this.tagList[i].click();
         }
+    }
+
+    async selectResult (index) {
+        await this.scrollTo(this.resultsList[index]);
+        await this.resultsList[index].$('.overlay-link').click();
     }
 }
 

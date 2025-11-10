@@ -14,9 +14,16 @@ describe('big testing', () => {
 
         await GamePage.clickAllCategories();
         await GamePage.search('Something');
+
         await SearchPage.search('Another');
         await SearchPage.search('Three');
         await SearchPage.selectAllTags();
+        await SearchPage.selectResult(0);
+        
+        await expect(ModPage.projectID).toExist();
+        await ModPage.selectGallery();
+        await ModPage.selectRelations();
+        await ModPage.selectRelationsPage(3);
     })
 })
 

@@ -1,7 +1,6 @@
 import { $, $$, browser, expect } from '@wdio/globals'
 import Page from './page.js'
 import SearchPage from './search.page.js';
-import searchPage from './search.page.js';
 
 class GamePage extends Page {
     get gameTitle () {
@@ -19,18 +18,22 @@ class GamePage extends Page {
     async clickAllCategories () {
         let catLength = await this.modCategories.length;
         for (let i = 0; i < (catLength - 1); i++) {
-            await this.modCategories[i].scrollIntoView({behavior: 'instant', block: 'center'});
+            await this.scrollTo(this.modCategories[i]);
             await this.modCategories[i].click();
             await SearchPage.tags[0].click();
-            await expect(searchPage.tags).toBeElementsArrayOfSize(0);
+            await expect(SearchPage.tags).toBeElementsArrayOfSize(0);
             for (let i = 0; i < 2; i++) {
                 await browser.back();
             };
         };
     }
 
+    async search (input) {
+        await SearchPage.search(input);
+    }
+
     async open (game) {
-        super.open(game);
+        await super.open(game);
     }
 }
 

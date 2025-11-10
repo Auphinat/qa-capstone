@@ -9,6 +9,40 @@ class SearchPage extends Page {
     get tags () {
         return $$('.search-tags>li');
     }
+
+    get searchInput () {
+        return $('.search-input-field');
+    }
+
+    get searchBtn () {
+        return $('.btn-search');
+    }
+
+    get tagList () {
+        return $$('.classes-list>li>a');
+    }
+
+    async search (input) {
+        await this.scrollTo(this.searchInput);
+        await this.searchInput.setValue(input);
+
+        await this.scrollTo(this.searchBtn);
+        await this.searchBtn.click();
+    }
+
+    async selectTag (index) {
+        await this.scrollTo(this.tagList[index]);
+        await this.tagList[index].click();
+    }
+
+    async selectAllTags () {
+        let listLength = await this.tagList.length;
+
+        for (let i = 0; i < listLength; i++) {
+            await this.scrollTo(this.tagList[i]);
+            await this.tagList[i].click();
+        }
+    }
 }
 
 export default new SearchPage();

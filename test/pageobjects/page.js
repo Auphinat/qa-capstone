@@ -9,6 +9,10 @@ export default class Page {
         await this.cookiebtn.click();
     }
 
+    async scrollTo (selector) {
+        await selector.scrollIntoView({behavior: 'instant', block: 'center'});
+    }
+
     open (path) {
         return browser.url(`https://www.curseforge.com/${path}`)
     }

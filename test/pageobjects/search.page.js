@@ -50,6 +50,7 @@ class SearchPage extends Page {
 
     async selectResult (index) {
         await this.scrollTo(this.resultsList[index]);
+        await this.scrollTo(this.resultsList[index]); // Only works when there's two. I don't know why.
         await this.resultsList[index].$('.overlay-link').click();
     }
 }

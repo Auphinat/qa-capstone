@@ -23,7 +23,11 @@ describe('big testing', () => {
         await expect(ModPage.projectID).toExist();
         await ModPage.selectGallery();
         await ModPage.selectRelations();
-        await ModPage.selectRelationsPage(3);
+        await ModPage.selectRelationsPage(2);
+
+        await SurprisePage.rollSurprise(0, 3);
+        await SurprisePage.rollSurprise(1, 3);
+        await SurprisePage.rollSurprise(2, 3);
     })
 })
 

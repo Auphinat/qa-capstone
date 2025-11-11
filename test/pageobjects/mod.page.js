@@ -1,4 +1,4 @@
-import { $ } from '@wdio/globals'
+import { $, $$ } from '@wdio/globals'
 import Page from './page.js';
 
 class ModPage extends Page {
@@ -23,7 +23,7 @@ class ModPage extends Page {
     }
 
     get pageNumbers () {
-        return $$('.top>.page-numbers>li');
+        return $$('.top>.page-numbers>li>button');
     }
 
     async selectGallery () {
@@ -37,8 +37,15 @@ class ModPage extends Page {
     }
 
     async selectRelationsPage (index) {
+        if ((await this.pageNumbers.length) == 0) {
+            return;
+        }
         await this.scrollTo(this.pageNumbers[index]);
-        await this.pageNumbers[index].$('button').click();
+        await this.pageNumbers[index].click();
+    }
+
+    async open (page) {
+        await super.open(page);
     }
 }
 
